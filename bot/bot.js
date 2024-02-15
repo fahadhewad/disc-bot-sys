@@ -20,15 +20,14 @@ client.on('interactionCreate', async interaction => {
   if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === 'counter') {
-    const voteChannel = await client.channels.fetch('1100368209858793574');
+    await interaction.deferReply();
 
     try {
       const response = await axios.get('http://localhost:3000/counter');
-      const count = response.data
-      voteChannel.send(count);
+      await interaction.editReply(response.data);
     } catch (error) {
       console.error('Error contacting the server:', error);
-      voteChannel.send('Failed to contact the server.');
+      await interaction.editReply('Failed to contact the server.');
     }
 
   } else if (interaction.commandName === 'vote') {
@@ -50,7 +49,7 @@ client.on('interactionCreate', async interaction => {
 
     collector.on('end', async collected => {
 
-      if (collected.first()?.count >= 1) {
+      if (collected.first()?.count >= 3) {
         voteChannel.send('Vote passed!');
         try {
           const response = await axios.get('http://localhost:3000/increment');
@@ -63,6 +62,16 @@ client.on('interactionCreate', async interaction => {
       } else {
         voteChannel.send('Vote did not pass.');
       }
+
+      try {
+        const response = await axios.get('http://localhost:3000/counter');
+        const count = response.data
+        voteChannel.send(count);
+      } catch (error) {
+        console.error('Error contacting the server:', error);
+        voteChannel.send('Failed to contact the server.');
+      }
+
     });
 
     await interaction.reply({ content: 'Vote started!', ephemeral: true });
