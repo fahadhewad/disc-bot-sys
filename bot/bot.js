@@ -21,6 +21,7 @@ client.on('interactionCreate', async interaction => {
 
   if (interaction.commandName === 'counter') {
     await interaction.deferReply();
+    const voteChannel = await client.channels.fetch('1177955946396393544');
 
     try {
       const response = await axios.get('http://localhost:3000/counter');
@@ -29,10 +30,10 @@ client.on('interactionCreate', async interaction => {
       console.error('Error contacting the server:', error);
       await interaction.editReply('Failed to contact the server.');
     }
-
+    voteChannel.send("https://tenor.com/view/fnaf-gif-24419090")
   } else if (interaction.commandName === 'vote') {
 
-    const voteChannel = await client.channels.fetch('1100368209858793574');
+    const voteChannel = await client.channels.fetch('1177955946396393544');
     const voteMessage = await voteChannel.send('React with 👍 to vote!');
     await voteMessage.react('👍');
 

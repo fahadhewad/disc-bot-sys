@@ -1,0 +1,11 @@
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\obj\Debug\Troll Counter.csproj.AssemblyReference.cache
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\obj\Debug\Troll Counter.csproj.SuggestedBindingRedirects.cache
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\obj\Debug\Troll_Counter.Form1.resources
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\obj\Debug\Troll_Counter.Properties.Resources.resources
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\obj\Debug\Troll Counter.csproj.GenerateResource.cache
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\obj\Debug\Troll Counter.csproj.CoreCompileInputs.cache
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\bin\Debug\Troll Counter.exe.config
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\bin\Debug\Troll Counter.exe
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\bin\Debug\Troll Counter.pdb
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\obj\Debug\Troll Counter.exe
+C:\Users\loneo\Desktop\Projects\disc-bot-sys\.net\Troll Counter\Troll Counter\obj\Debug\Troll Counter.pdb
