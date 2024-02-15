@@ -7,9 +7,9 @@ const botToken = process.env.DISCORD_BOT_TOKEN;
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildMessageReactions, // Include this intent
+    GatewayIntentBits.GuildMessageReactions,
   ],
-  partials: [Partials.Message, Partials.Reaction], // Include partials if necessary
+  partials: [Partials.Message, Partials.Reaction],
 });
 
 client.on('ready', () => {
@@ -20,7 +20,17 @@ client.on('interactionCreate', async interaction => {
   if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === 'counter') {
-    await interaction.reply('Counter command invoked!');
+    const voteChannel = await client.channels.fetch('1100368209858793574');
+
+    try {
+      const response = await axios.get('http://localhost:3000/counter');
+      const count = response.data
+      voteChannel.send(count);
+    } catch (error) {
+      console.error('Error contacting the server:', error);
+      voteChannel.send('Failed to contact the server.');
+    }
+
   } else if (interaction.commandName === 'vote') {
 
     const voteChannel = await client.channels.fetch('1100368209858793574');
