@@ -1,9 +1,16 @@
 require('dotenv').config({ path: 'keys.env' });
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, GatewayIntentBits, Partials } = require('discord.js');
+const axios = require('axios');
 
 const botToken = process.env.DISCORD_BOT_TOKEN;
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessageReactions, // Include this intent
+  ],
+  partials: [Partials.Message, Partials.Reaction], // Include partials if necessary
+});
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -31,11 +38,18 @@ client.on('interactionCreate', async interaction => {
       console.log(`Collected ${reaction.emoji.name} from ${user.tag}`);
     });
 
-    collector.on('end', collected => {
+    collector.on('end', async collected => {
 
-      console.log(collected);
       if (collected.first()?.count >= 1) {
         voteChannel.send('Vote passed!');
+        try {
+          const response = await axios.get('http://localhost:3000/increment');
+          console.log('Server response:', response.data);
+          voteChannel.send('Server notified successfully!');
+        } catch (error) {
+          console.error('Error contacting the server:', error);
+          voteChannel.send('Vote passed, but failed to contact the server.');
+        }
       } else {
         voteChannel.send('Vote did not pass.');
       }
